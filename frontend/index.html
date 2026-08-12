@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EUREKA! Pitching - Startup Competition</title>
+    <meta name="description"
+        content="EUREKA! Pitching - Turn your idea into the next big startup. Submit registrations, download templates, view event guidelines, and pitch to leading mentors.">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="glow-background"></div>
+
+    <header>
+        <div class="container nav-container">
+            <a href="/" class="logo">
+                <i class="fa-solid fa-rocket logo-rocket"></i> EUREKA<span>!</span>
+            </a>
+            <nav style="display: flex; align-items: center; gap: 2rem;">
+                <a href="#about"
+                    style="color: var(--text-secondary); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: var(--transition);">About</a>
+                <a href="#benefits"
+                    style="color: var(--text-secondary); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: var(--transition);">Benefits</a>
+                <a href="#timeline"
+                    style="color: var(--text-secondary); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: var(--transition);">Timeline</a>
+                <a href="admin.html"
+                    style="color: var(--text-secondary); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: var(--transition);">Admin</a>
+                <a href="register.html" class="btn btn-primary"
+                    style="padding: 0.5rem 1.25rem; font-size: 0.9rem; border-radius: 0.5rem;">Apply Now 🚀</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero"
+            style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: center; text-align: left; padding: 4rem 0;">
+            <div>
+                <div class="hero-tagline">🚀 EUREKA! PITCHING 2026</div>
+                <h1 style="line-height: 1.1; margin-bottom: 1rem;"><span class="gradient-text">Turn your idea</span>
+                    <br>into the next <br><span class="neon-text-purple">big startup.</span>
+                </h1>
+                <p class="hero-desc" style="margin: 0 0 2.5rem 0; font-size: 1.1rem; line-height: 1.7;">
+                    Showcase your innovation, receive expert mentorship, pitch to active investors, and secure a
+                    fast-tracked path to the Zonal Pitching Round. Registrations are open for team sizes of 2-5 members.
+                </p>
+                <div class="hero-actions" style="justify-content: flex-start; gap: 1rem;">
+                    <a href="register.html" class="btn btn-primary">Apply Now <i class="fa-solid fa-arrow-right"></i></a>
+                    <button class="btn btn-secondary" onclick="toggleModal('guidelines-modal', true)">View Guidelines <i
+                            class="fa-solid fa-file-invoice"></i></button>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: center;">
+                <div class="glass-panel"
+                    style="padding: 1rem; border-radius: 1.5rem; max-width: 420px; box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);">
+                    <img src="/uploads/eureka_hero_rocket.png" alt="EUREKA! Startup Launch Rocket"
+                        style="width: 100%; border-radius: 1rem; display: block; object-fit: cover;">
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="glass-panel reveal"
+            style="padding: 4rem; margin: 4rem 0; position: relative; overflow: hidden;">
+            <div
+                style="position: absolute; right: -5rem; top: -5rem; width: 12rem; height: 12rem; background: var(--primary-glow); border-radius: 50%; filter: blur(70px); opacity: 0.2; pointer-events: none;">
+            </div>
+            <h2 class="gradient-text" style="font-size: 2.25rem; margin-bottom: 1.5rem; text-align: left;">About EUREKA!
+            </h2>
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 3rem;">
+                <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.8;">
+                    EUREKA! is the entrepreneurship club's flagship startup pitching competition, dedicated to fostering
+                    innovation and supporting early-stage student concepts. Designed for aspiring founders, developers,
+                    and visionaries, the event acts as a launching pad to transition theoretical plans into scalable
+                    business products.
+                    <br><br>
+                    Participating teams will refine their products, analyze market fit, establish customer acquisition
+                    strategies, and pitch in front of a panel of successful startup operators and angel investors.
+                </p>
+                <div
+                    style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 0.75rem; padding: 1.5rem; display: flex; flex-direction: column; justify-content: center;">
+                    <div
+                        style="font-size: 0.85rem; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 0.25rem;">
+                        Hosted By</div>
+                    <div style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 1rem;">NEC
+                        Entrepreneurship Club</div>
+                    <div
+                        style="font-size: 0.85rem; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 0.25rem;">
+                        Eligibility</div>
+                    <div style="font-size: 1rem; font-weight: 600; color: var(--cyan);">All departments & years</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Participate Section -->
+        <section id="benefits" class="why-section">
+            <h2 class="section-title gradient-text">Why Participate?</h2>
+            <p class="section-desc">Unlock opportunities to take your business concept from notes on a napkin to a
+                validated, funded startup operation.</p>
+
+            <div class="grid-cards">
+                <div class="glass-panel why-card reveal">
+                    <div class="why-card-icon"><i class="fa-solid fa-lightbulb" style="color: #fbbf24;"></i></div>
+                    <h3>Pitch Your Startup</h3>
+                    <p>Present your business proposal directly to an experienced panel of venture capitalists and
+                        startup operators.</p>
+                </div>
+
+                <div class="glass-panel why-card reveal reveal-delay-100">
+                    <div class="why-card-icon"><i class="fa-solid fa-user-tie" style="color: #60a5fa;"></i></div>
+                    <h3>Meet Industry Mentors</h3>
+                    <p>Connect 1-on-1 with founders who have built companies, offering mentorship on business
+                        development and scaling.</p>
+                </div>
+
+                <div class="glass-panel why-card reveal reveal-delay-200">
+                    <div class="why-card-icon"><i class="fa-solid fa-comments" style="color: #a78bfa;"></i></div>
+                    <h3>Get Expert Feedback</h3>
+                    <p>Gain objective insights on product-market fit, revenue models, sales strategies, and software
+                        architecture.</p>
+                </div>
+
+                <div class="glass-panel why-card reveal reveal-delay-300">
+                    <div class="why-card-icon"><i class="fa-solid fa-trophy" style="color: #f472b6;"></i></div>
+                    <h3>Advance to Zonal Round</h3>
+                    <p>Winners secure prize money and a direct fast-track invitation to the regional Zonal startup
+                        pitching tournament.</p>
+                </div>
+
+                <div class="glass-panel why-card reveal reveal-delay-400">
+                    <div class="why-card-icon"><i class="fa-solid fa-users" style="color: #34d399;"></i></div>
+                    <h3>Connect with Founders</h3>
+                    <p>Network with fellow developers, UI designers, and entrepreneurs to form teams and share
+                        co-founding opportunities.</p>
+                </div>
+
+                <div class="glass-panel why-card reveal reveal-delay-500">
+                    <div class="why-card-icon"><i class="fa-solid fa-seedling" style="color: #38bdf8;"></i></div>
+                    <h3>Incubation Potential</h3>
+                    <p>Top-tier ideas will be nominated for the campus business incubator, receiving free co-working
+                        space and legal registration guidance.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Timeline Section -->
+        <section id="timeline" class="timeline-section">
+            <h2 class="section-title gradient-text">Event Timeline</h2>
+            <p class="section-desc">Key milestones for the pitching competition. Make sure to complete submissions ahead
+                of deadlines.</p>
+
+            <div class="timeline">
+                <div class="timeline-item reveal">
+                    <div class="timeline-node"></div>
+                    <div class="glass-panel timeline-content">
+                        <div class="timeline-date">August 15, 2026</div>
+                        <h3>Registrations Open</h3>
+                        <p>Registration window launches online. Assemble your teams of 2 to 5 members and prepare your
+                            pitching proposals.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal">
+                    <div class="timeline-node"></div>
+                    <div class="glass-panel timeline-content">
+                        <div class="timeline-date">August 22, 2026</div>
+                        <h3>Startup Registration Deadline</h3>
+                        <p>Application window closes. All team detail forms and optional pitch decks must be submitted
+                            by 11:59 PM.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal">
+                    <div class="timeline-node"></div>
+                    <div class="glass-panel timeline-content">
+                        <div class="timeline-date">August 25, 2026</div>
+                        <h3>Mentorship & Desk Reviews</h3>
+                        <p>Registered teams receive feedback from assigned mentors to polish and refine their slides and
+                            prototypes.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal">
+                    <div class="timeline-node"></div>
+                    <div class="glass-panel timeline-content">
+                        <div class="timeline-date">August 27, 2026</div>
+                        <h3>Pitching Event Day</h3>
+                        <p>Live pitching in front of the jury panels. 7 minutes pitch followed by 5 minutes Q&A.
+                            Finalists selected.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal">
+                    <div class="timeline-node"></div>
+                    <div class="glass-panel timeline-content">
+                        <div class="timeline-date">August 29, 2026</div>
+                        <h3>Award Ceremony & Final Submission</h3>
+                        <p>Winners announced. Top 3 teams receive prizes, incubator seats, and recommendations for the
+                            Zonal rounds.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section style="text-align: center; padding: 6rem 0;">
+            <div class="glass-panel reveal"
+                style="padding: 4rem; max-width: 850px; margin: 0 auto; background: linear-gradient(135deg, rgba(99,102,241,0.07) 0%, rgba(139,92,246,0.07) 100%);">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1rem;"><span class="gradient-text">Ready to Pitch Your
+                        Idea?</span></h2>
+                <p style="color: var(--text-secondary); max-width: 550px; margin: 0 auto 2.5rem; font-size: 1.05rem;">
+                    Don't wait. Step into the spotlight and showcase your innovation to those who can help you scale.
+                </p>
+                <a href="/register" class="btn btn-primary"
+                    style="font-size: 1.1rem; padding: 1rem 3rem; box-shadow: 0 10px 25px var(--primary-glow);">Apply
+                    For Eureka Now <i class="fa-solid fa-rocket"></i></a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Guidelines Modal -->
+    <div id="guidelines-modal" class="modal">
+        <div class="modal-overlay" onclick="toggleModal('guidelines-modal', false)"></div>
+        <div class="glass-panel modal-container">
+            <button class="modal-close" onclick="toggleModal('guidelines-modal', false)"><i
+                    class="fa-solid fa-xmark"></i></button>
+            <div class="modal-body">
+                <div class="detail-section">
+                    <div class="detail-title"><i class="fa-solid fa-file-lines"></i> EUREKA! Event Guidelines & Rules</div>
+                    <div style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.8;">
+                    <h4 style="color: #fff; margin: 1rem 0 0.5rem;">1. Team Composition</h4>
+                    <p style="margin-left: 1rem;">
+                        - Every team must have a minimum of 2 members and a maximum of 5 members.<br>
+                        - One member must be nominated as the "Team Lead". The Lead will be the primary point of contact
+                        for emails and results.
+                    </p>
+
+                    <h4 style="color: #fff; margin: 1rem 0 0.5rem;">2. Pitching Structure</h4>
+                    <p style="margin-left: 1rem;">
+                        - Pitch duration is strictly capped at 7 minutes.<br>
+                        - 5 minutes are allocated for Jury Q&A immediately following the presentation.<br>
+                        - Pitch decks should cover: Problem Statement, Solution, Market Opportunity, Business Model,
+                        Product Prototype, and Team Strengths.
+                    </p>
+
+                    <h4 style="color: #fff; margin: 1rem 0 0.5rem;">3. Submission Format</h4>
+                    <p style="margin-left: 1rem;">
+                        - Pitch decks must be uploaded in PDF format only.<br>
+                        - Maximum file upload limit is 10 MB.<br>
+                        - Submissions are unique per email, college ID, and registration team.
+                    </p>
+
+                    <h4 style="color: #fff; margin: 1rem 0 0.5rem;">4. Disqualification</h4>
+                    <p style="margin-left: 1rem;">
+                        - Plagiarism of products or using non-authorized content will result in immediate
+                        disqualification.
+                    </p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="toggleModal('guidelines-modal', false)">I Understand</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-logo"><i class="fa-solid fa-rocket"></i> EUREKA!</div>
+            <p style="font-size: 0.9rem;">Organized by the NEC Entrepreneurship Club. Designed for future innovators.
+            </p>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">© 2026 EUREKA! Pitching Platform. All rights
+                reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleModal(id, show) {
+            const modal = document.getElementById(id);
+            if (show) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Scroll Reveal Animations using Intersection Observer
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: "0px 0px -60px 0px", // Trigger animation slightly before element fully enters
+                threshold: 0.1
+            };
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("revealed");
+                        observer.unobserve(entry.target); // Unobserve so it only triggers once
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all reveal classes
+            const revealElements = document.querySelectorAll(".reveal");
+            revealElements.forEach(el => {
+                revealObserver.observe(el);
+            });
+        });
+    </script>
+</body>
+
+</html>

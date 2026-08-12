@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EUREKA! Admin Portal</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="glow-background"></div>
+
+    <!-- 1. ADMIN LOGIN PANEL -->
+    <div id="login-container" class="glass-panel admin-login-card">
+        <h2 style="font-size: 1.75rem; margin-bottom: 0.5rem; text-align: center;" class="gradient-text">EUREKA! Admin
+            Log In</h2>
+        <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 2rem; text-align: center;">Enter
+            authorization keys to manage registrations.</p>
+
+        <div id="login-error" class="error-msg"
+            style="display: none; margin-bottom: 1.5rem; justify-content: center; font-size: 0.85rem;">
+            <i class="fa-solid fa-triangle-exclamation"></i> Incorrect username or password.
+        </div>
+
+        <form onsubmit="adminLogin(event)">
+            <div class="form-group">
+                <label for="admin_user">Username</label>
+                <input type="text" id="admin_user" class="input-field" placeholder="e.g. admin" required
+                    autocomplete="username">
+            </div>
+            <div class="form-group" style="margin-bottom: 2rem;">
+                <label for="admin_pass">Password</label>
+                <input type="password" id="admin_pass" class="input-field" placeholder="••••••••••••" required
+                    autocomplete="current-password">
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+                Access Portal <i class="fa-solid fa-right-to-bracket"></i>
+            </button>
+        </form>
+    </div>
+
+    <!-- 2. ADMIN DASHBOARD CONTAINER (Initially Hidden) -->
+    <div id="dashboard-container" style="display: none;">
+        <header>
+            <div class="container nav-container">
+                <a href="/" class="logo">
+                    <i class="fa-solid fa-rocket logo-rocket"></i> EUREKA<span>!</span> Admin
+                </a>
+                <nav style="display: flex; align-items: center; gap: 1.5rem;">
+                    <a href="/"
+                        style="color: var(--text-secondary); text-decoration: none; font-weight: 500; font-size: 0.95rem;">View
+                        Site</a>
+                    <button class="btn btn-secondary" onclick="adminLogout()"
+                        style="padding: 0.5rem 1rem; font-size: 0.85rem;">
+                        Log Out <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+                </nav>
+            </div>
+        </header>
+
+        <main class="container" style="padding: 3rem 0;">
+            <!-- Stats Counters -->
+            <div class="admin-stats-grid">
+                <div class="glass-panel stat-card">
+                    <div class="stat-title">Total Applications</div>
+                    <div class="stat-val" id="stat-total" style="color: #fff;">0</div>
+                </div>
+                <div class="glass-panel stat-card" style="border-left: 3px solid var(--warning);">
+                    <div class="stat-title">Pending Review</div>
+                    <div class="stat-val" id="stat-pending" style="color: var(--warning);">0</div>
+                </div>
+                <div class="glass-panel stat-card" style="border-left: 3px solid var(--success);">
+                    <div class="stat-title">Approved Startups</div>
+                    <div class="stat-val" id="stat-approved" style="color: var(--success);">0</div>
+                </div>
+                <div class="glass-panel stat-card" style="border-left: 3px solid var(--error);">
+                    <div class="stat-title">Rejected Entries</div>
+                    <div class="stat-val" id="stat-rejected" style="color: var(--error);">0</div>
+                </div>
+            </div>
+
+            <!-- Controls (Search & Filter & Export) -->
+            <div class="admin-controls-row">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="search-input" class="input-field"
+                        placeholder="Search startup name, ID or founder name..." oninput="handleSearchFilterChange()">
+                </div>
+                <div class="filter-group">
+                    <select id="filter-category" class="input-field" style="width: 160px; height: 46px;"
+                        onchange="handleSearchFilterChange()">
+                        <option class="dropdown-option" value="">All Categories</option>
+                        <option class="dropdown-option" value="AI / ML">AI / ML</option>
+                        <option class="dropdown-option" value="FinTech">FinTech</option>
+                        <option class="dropdown-option" value="HealthTech">HealthTech</option>
+                        <option class="dropdown-option" value="EdTech">EdTech</option>
+                        <option class="dropdown-option" value="SaaS">SaaS</option>
+                        <option class="dropdown-option" value="Agritech">Agritech</option>
+                        <option class="dropdown-option" value="CleanTech">CleanTech</option>
+                        <option class="dropdown-option" value="E-commerce">E-commerce</option>
+                        <option class="dropdown-option" value="Other">Other</option>
+                    </select>
+
+                    <select id="filter-status" class="input-field" style="width: 140px; height: 46px;"
+                        onchange="handleSearchFilterChange()">
+                        <option class="dropdown-option" value="">All Statuses</option>
+                        <option class="dropdown-option" value="Pending">Pending</option>
+                        <option class="dropdown-option" value="Approved">Approved</option>
+                        <option class="dropdown-option" value="Rejected">Rejected</option>
+                    </select>
+
+                    <button class="btn btn-primary" onclick="exportExcel()" style="height: 46px; white-space: nowrap;">
+                        Export Excel <i class="fa-solid fa-file-excel"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Applications Datatable -->
+            <div class="glass-panel table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Reg ID</th>
+                            <th>Startup Name</th>
+                            <th>Category</th>
+                            <th>Team Lead</th>
+                            <th>Team Size</th>
+                            <th>Date Submitted</th>
+                            <th>Status</th>
+                            <th style="text-align: center;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="registrations-tbody">
+                        <tr>
+                            <td colspan="8" style="text-align: center; color: var(--text-secondary); padding: 3rem;">
+                                <i class="fa-solid fa-circle-notch fa-spin"
+                                    style="font-size: 2rem; margin-bottom: 0.5rem; display: block; color: var(--primary);"></i>
+                                Loading registration table...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination Control bar -->
+            <div class="pagination">
+                <div class="pagination-info" id="pagination-info">Showing 0-0 of 0 applications</div>
+                <div class="pagination-buttons">
+                    <button class="btn btn-secondary" id="btn-prev" onclick="changePage(-1)"
+                        style="padding: 0.5rem 1rem; font-size: 0.85rem;"><i class="fa-solid fa-angle-left"></i>
+                        Previous</button>
+                    <button class="btn btn-secondary" id="btn-next" onclick="changePage(1)"
+                        style="padding: 0.5rem 1rem; font-size: 0.85rem;">Next <i
+                            class="fa-solid fa-angle-right"></i></button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 3. VIEW REGISTRATION DETAIL MODAL -->
+    <div id="details-modal" class="modal">
+        <div class="modal-overlay" onclick="toggleModal('details-modal', false)"></div>
+        <div class="glass-panel modal-container">
+            <!-- Scrollable body -->
+            <div class="modal-body">
+                <button class="modal-close" onclick="toggleModal('details-modal', false)"><i
+                        class="fa-solid fa-xmark"></i></button>
+
+                <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem;" class="gradient-text"><i
+                        class="fa-solid fa-file-invoice"></i> Application Details</h3>
+
+                <!-- Modal Body contents -->
+                <div id="modal-details-content">
+                    <!-- Startup general info -->
+                    <div class="detail-section">
+                        <div class="detail-title">Startup Profile</div>
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <div class="detail-label">Startup Name</div>
+                                <div class="detail-val" id="det-startup-name">-</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Category</div>
+                                <div class="detail-val" id="det-category">-</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Project Stage</div>
+                                <div class="detail-val" id="det-stage">-</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Registration ID</div>
+                                <div class="detail-val" id="det-reg-id" style="color: var(--cyan); font-weight: 700;">-
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Startup Description text boxes -->
+                    <div class="detail-section">
+                        <div class="detail-title">Pitch Description</div>
+                        <div style="margin-bottom: 1rem;">
+                            <div class="detail-label">Description Summary</div>
+                            <p class="detail-val" id="det-desc"
+                                style="line-height: 1.6; font-size: 0.95rem; white-space: pre-line;">-</p>
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <div class="detail-label">Problem Statement</div>
+                            <p class="detail-val" id="det-problem"
+                                style="line-height: 1.6; font-size: 0.95rem; white-space: pre-line;">-</p>
+                        </div>
+                        <div>
+                            <div class="detail-label">Proposed Solution</div>
+                            <p class="detail-val" id="det-solution"
+                                style="line-height: 1.6; font-size: 0.95rem; white-space: pre-line;">-</p>
+                        </div>
+                    </div>
+
+                    <!-- Conditional details for business -->
+                    <div class="detail-section" id="det-conditional-section" style="display: none;">
+                        <div class="detail-title">Business Registration Data</div>
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <div class="detail-label">Website URL</div>
+                                <div class="detail-val" id="det-website">-</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Existing Revenue</div>
+                                <div class="detail-val" id="det-revenue">-</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Registration/Incubation Info</div>
+                                <div class="detail-val" id="det-reg-details">-</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Team members profiles list -->
+                    <div class="detail-section">
+                        <div class="detail-title">Team Configuration (<span id="det-team-size">0</span> members)</div>
+                        <div id="det-members-list" style="display: flex; flex-direction: column; gap: 1rem;"></div>
+                    </div>
+
+                    <!-- Pitch Deck attachment link -->
+                    <div class="detail-section" id="det-pdf-section">
+                        <div class="detail-title">Pitch Deck Slides</div>
+                        <div
+                            style="display: flex; align-items: center; gap: 1rem; background: rgba(255,255,255,0.02); padding: 1rem; border-radius: 0.5rem; border: 1px solid var(--border-color);">
+                            <i class="fa-solid fa-file-pdf" style="font-size: 2rem; color: var(--error);"></i>
+                            <div style="flex-grow: 1;">
+                                <div style="font-weight: 600; font-size: 0.9rem;">Pitch_Deck_Submission.pdf</div>
+                                <div style="font-size: 0.75rem; color: var(--text-secondary);">Uploaded directly by team
+                                    lead</div>
+                            </div>
+                            <a href="#" id="det-pdf-download" target="_blank" class="btn btn-secondary"
+                                style="padding: 0.5rem 1rem; font-size: 0.85rem;"><i class="fa-solid fa-download"></i>
+                                View PDF</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Action Buttons (Status changes) — always visible sticky footer -->
+            <div class="modal-actions">
+                <input type="hidden" id="det-db-id">
+                <span id="det-status-badge" class="badge" style="margin-right: auto; align-self: center;">-</span>
+                <button class="btn btn-secondary" onclick="toggleModal('details-modal', false)">Close</button>
+                <button class="btn btn-danger" onclick="updateStatusFromModal('Rejected')">Reject Application</button>
+                <button class="btn btn-primary" onclick="updateStatusFromModal('Approved')"
+                    style="background: var(--success); box-shadow: 0 4px 14px var(--success-glow);">Approve
+                    Startup</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin dashboard JS script link -->
+    <script src="/js/admin.js"></script>
+</body>
+
+</html>

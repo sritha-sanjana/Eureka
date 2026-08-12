@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EUREKA! Startup Application Form</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="glow-background"></div>
+
+    <header>
+        <div class="container nav-container">
+            <a href="/" class="logo">
+                <i class="fa-solid fa-rocket logo-rocket"></i> EUREKA<span>!</span>
+            </a>
+            <nav style="display: flex; align-items: center; gap: 2rem;">
+                <a href="/"
+                    style="color: var(--text-secondary); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: var(--transition);">Home</a>
+                <a href="/#about"
+                    style="color: var(--text-secondary); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: var(--transition);">About</a>
+                <a href="admin.html"
+                    style="color: var(--text-secondary); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: var(--transition);">Admin
+                    Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container form-section">
+        <div class="glass-panel form-card">
+
+            <!-- Form Header & Stepper -->
+            <div id="form-header-area">
+                <h2 style="font-size: 2rem; margin-bottom: 0.5rem; text-align: center;" class="gradient-text">EUREKA!
+                    Pitch Application</h2>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 3rem; text-align: center;">
+                    Register your startup idea for the pitching competition. Fields marked with <span>*</span> are
+                    required.</p>
+
+                <div class="stepper">
+                    <div class="stepper-progress" id="stepper-progress"></div>
+                    <div class="step-node active" data-step="1">1
+                        <span class="step-label">Applicant</span>
+                    </div>
+                    <div class="step-node" data-step="2">2
+                        <span class="step-label">Startup</span>
+                    </div>
+                    <div class="step-node" data-step="3">3
+                        <span class="step-label">Team Members</span>
+                    </div>
+                    <div class="step-node" data-step="4">4
+                        <span class="step-label">Pitch & Files</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Form -->
+            <form id="registration-form" onsubmit="submitForm(event)">
+
+                <!-- STEP 1: Applicant Details (Team Lead) -->
+                <div class="form-step active" data-step="1">
+                    <h3
+                        style="font-family: var(--font-heading); font-size: 1.25rem; margin-bottom: 1.5rem; color: var(--cyan);">
+                        Step 1: Team Lead Info
+                    </h3>
+
+                    <div class="form-group">
+                        <label for="lead_name">Full Name <span>*</span></label>
+                        <input type="text" id="lead_name" class="input-field"
+                            placeholder="Enter full name of the team leader" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="lead_email">Email Address <span>*</span></label>
+                            <input type="email" id="lead_email" class="input-field" placeholder="lead@college.edu"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lead_phone">Phone Number (10 digits) <span>*</span></label>
+                            <input type="tel" id="lead_phone" class="input-field" placeholder="e.g. 9876543210"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="lead_college">College Name <span>*</span></label>
+                            <input type="text" id="lead_college" class="input-field"
+                                placeholder="College / University Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lead_department">Department / Branch <span>*</span></label>
+                            <input type="text" id="lead_department" class="input-field"
+                                placeholder="e.g. Computer Science" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="lead_year">Year of Study <span>*</span></label>
+                            <select id="lead_year" class="input-field" required>
+                                <option value="" disabled selected>Select Year ▼</option>
+                                <option class="dropdown-option" value="1st Year">1st Year</option>
+                                <option class="dropdown-option" value="2nd Year">2nd Year</option>
+                                <option class="dropdown-option" value="3rd Year">3rd Year</option>
+                                <option class="dropdown-option" value="4th Year">4th Year</option>
+                                <option class="dropdown-option" value="Postgraduate">Postgraduate</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="lead_bank_account">Bank Account Number <span
+                                    style="color: var(--text-secondary); font-size: 0.8rem; font-weight: 400;">(for
+                                    prize distribution)</span></label>
+                            <input type="text" id="lead_bank_account" class="input-field" placeholder="e.g. 1234567890"
+                                required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 2: Startup Details -->
+                <div class="form-step" data-step="2">
+                    <h3
+                        style="font-family: var(--font-heading); font-size: 1.25rem; margin-bottom: 1.5rem; color: var(--cyan);">
+                        Step 2: Startup Pitch Details
+                    </h3>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="startup_name">Startup / Project Name <span>*</span></label>
+                            <input type="text" id="startup_name" class="input-field"
+                                placeholder="e.g. Acme Tech Solutions" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="startup_category">Startup Category <span>*</span></label>
+                            <select id="startup_category" class="input-field" required>
+                                <option class="dropdown-option" value="" disabled selected>Select Category ▼</option>
+                                <option class="dropdown-option" value="AI / ML">AI / ML</option>
+                                <option class="dropdown-option" value="FinTech">FinTech</option>
+                                <option class="dropdown-option" value="HealthTech">HealthTech</option>
+                                <option class="dropdown-option" value="EdTech">EdTech</option>
+                                <option class="dropdown-option" value="SaaS">SaaS</option>
+                                <option class="dropdown-option" value="Agritech">Agritech</option>
+                                <option class="dropdown-option" value="CleanTech">CleanTech</option>
+                                <option class="dropdown-option" value="E-commerce">E-commerce</option>
+                                <option class="dropdown-option" value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="startup_stage">Current Stage <span>*</span></label>
+                        <select id="startup_stage" class="input-field" required>
+                            <option class="dropdown-option" value="" disabled selected>Select Stage ▼</option>
+                            <option class="dropdown-option" value="Ideation / Concept">Ideation / Concept</option>
+                            <option class="dropdown-option" value="Prototype / MVP Underway">Prototype / MVP Underway
+                            </option>
+                            <option class="dropdown-option" value="MVP Completed / Testing">MVP Completed / Testing
+                            </option>
+                            <option class="dropdown-option" value="Early Traction / Revenue">Early Traction / Revenue
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="startup_description">Startup Description (Brief pitch - Min 10 chars)
+                            <span>*</span></label>
+                        <textarea id="startup_description" class="input-field"
+                            placeholder="Describe your startup and primary product idea..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="problem_statement">Problem Statement (Min 10 chars) <span>*</span></label>
+                        <textarea id="problem_statement" class="input-field"
+                            placeholder="What pain point does your startup address? Who experiences this problem?"
+                            required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="solution_details">Proposed Solution (Min 10 chars) <span>*</span></label>
+                        <textarea id="solution_details" class="input-field"
+                            placeholder="How does your product resolve this issue? What is your secret sauce?"
+                            required></textarea>
+                    </div>
+                </div>
+
+                <!-- STEP 3: Dynamic Team Details -->
+                <div class="form-step" data-step="3">
+                    <h3
+                        style="font-family: var(--font-heading); font-size: 1.25rem; margin-bottom: 1.5rem; color: var(--cyan);">
+                        Step 3: Dynamic Team Configuration
+                    </h3>
+
+                    <div class="team-controls">
+                        <div style="flex-grow: 1;">
+                            <label style="margin-bottom: 0.15rem; font-size: 1rem;">Total Team Members</label>
+                            <span style="font-size: 0.8rem; color: var(--text-secondary);">Select the number of members
+                                in your pitching team (including Lead). Min: 2, Max: 5.</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <button type="button" class="btn-circle" onclick="adjustTeamSize(-1)"><i
+                                    class="fa-solid fa-minus"></i></button>
+                            <div class="team-count-display" id="team-size-display">2</div>
+                            <button type="button" class="btn-circle" onclick="adjustTeamSize(1)"><i
+                                    class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Container for dynamically inserted team members -->
+                    <div id="dynamic-members-container"></div>
+                </div>
+
+                <!-- STEP 4: Conditional Fields & Uploads -->
+                <div class="form-step" data-step="4">
+                    <h3
+                        style="font-family: var(--font-heading); font-size: 1.25rem; margin-bottom: 1.5rem; color: var(--cyan);">
+                        Step 4: Additional details & Pitch deck
+                    </h3>
+
+                    <!-- Conditional Question 1: Existing Startup -->
+                    <div class="form-group"
+                        style="background: rgba(255,255,255,0.01); padding: 1.25rem; border-radius: 0.75rem; border: 1px solid var(--border-color); margin-bottom: 2rem;">
+                        <label style="font-size: 1rem; margin-bottom: 0.5rem;">Are you an existing registered business /
+                            startup company? <span>*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="is_existing_startup" value="yes"
+                                    onchange="toggleExistingStartupFields(true)"> Yes
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="is_existing_startup" value="no" checked
+                                    onchange="toggleExistingStartupFields(false)"> No
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Hidden Conditional Block for Existing Startups -->
+                    <div id="existing-startup-fields"
+                        style="display: none; border-left: 3px solid var(--primary); padding-left: 1.5rem; margin-bottom: 2rem;">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="startup_website">Startup Website / Landing URL</label>
+                                <input type="url" id="startup_website" class="input-field"
+                                    placeholder="https://example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="existing_revenue">Annual Revenue Range</label>
+                                <select id="existing_revenue" class="input-field">
+                                    <option value="" selected>No Revenue / Pre-Revenue</option>
+                                    <option value="Under $10k">Under $10,000</option>
+                                    <option value="$10k - $50k">$10,000 - $50,000</option>
+                                    <option value="Over $50k">Over $50,000</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="existing_details">Registration Details / Incubation Status</label>
+                            <input type="text" id="existing_details" class="input-field"
+                                placeholder="e.g. Incorporated PVT LTD or Incubated on campus...">
+                        </div>
+                    </div>
+
+                    <!-- Conditional Question 2: Pitch Deck File -->
+                    <div class="form-group"
+                        style="background: rgba(255,255,255,0.01); padding: 1.25rem; border-radius: 0.75rem; border: 1px solid var(--border-color); margin-bottom: 2rem;">
+                        <label style="font-size: 1rem; margin-bottom: 0.5rem;">Do you have a pitch deck prepared to
+                            upload? <span>*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="has_pitch_deck_choice" value="yes" checked
+                                    onchange="togglePitchDeckField(true)"> Yes (PDF format)
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="has_pitch_deck_choice" value="no"
+                                    onchange="togglePitchDeckField(false)"> No (Submit details only)
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Hidden Conditional Block for File Upload -->
+                    <div id="pitch-deck-upload-field" style="margin-bottom: 2rem;">
+                        <label>Upload Pitch Deck PDF <span>*</span></label>
+                        <div class="upload-container" onclick="document.getElementById('pitch_file').click()">
+                            <div class="upload-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                            <div class="upload-text" id="upload-status-text"><span>Click to select</span> or drag PDF
+                                file here</div>
+                            <div class="upload-info">Only PDF files are supported. Max file size: 10 MB.</div>
+                        </div>
+                        <input type="file" id="pitch_file" accept=".pdf,application/pdf" style="display: none;"
+                            onchange="handleFileSelected(this)">
+                        <div class="error-msg" id="file-error" style="display: none;">
+                            <i class="fa-solid fa-triangle-exclamation"></i> Only PDF files are allowed.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Controls -->
+                <div class="form-actions" id="form-buttons-row">
+                    <button type="button" class="btn btn-secondary" id="btn-back" onclick="navigateStep(-1)" disabled
+                        style="opacity: 0.5; cursor: not-allowed;">
+                        <i class="fa-solid fa-arrow-left"></i> Back
+                    </button>
+                    <button type="button" class="btn btn-primary" id="btn-next" onclick="navigateStep(1)">
+                        Next <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Success Confirmation Screen -->
+            <div id="success-screen" style="display: none;">
+                <div class="success-card">
+                    <div class="success-icon"><i class="fa-solid fa-check"></i></div>
+                    <h2 class="gradient-text" style="font-size: 2.25rem; margin-bottom: 1rem;">Application Registered!
+                    </h2>
+                    <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto 1.5rem; line-height: 1.7;">
+                        Your pitching application has been successfully submitted to EUREKA. A confirmation email has
+                        been logged to your inbox.
+                    </p>
+
+                    <div class="reg-code-box">
+                        <div class="reg-code-title">Registration Code</div>
+                        <div class="reg-code" id="success-reg-id">ER001</div>
+                    </div>
+
+                    <div style="margin-top: 1rem;">
+                        <a href="/" class="btn btn-secondary">Return Home</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loader Overlay -->
+            <div id="loader-overlay"
+                style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 1.25rem; background: rgba(7, 9, 14, 0.7); backdrop-filter: blur(5px); z-index: 50; flex-direction: column; justify-content: center; align-items: center; color: #fff;">
+                <i class="fa-solid fa-circle-notch fa-spin"
+                    style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                <div style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 600;">Registering
+                    Startup...</div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-logo"><i class="fa-solid fa-rocket"></i> EUREKA!</div>
+            <p style="font-size: 0.9rem;">NEC Entrepreneurship Club Pitching Event.</p>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">© 2026 EUREKA! Platform. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Form Logic Script Link -->
+    <script src="/js/registration.js"></script>
+</body>
+
+</html>
